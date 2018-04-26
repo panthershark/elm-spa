@@ -2,6 +2,10 @@ require('dotenv').config({
   path: process.env.DOTENV
 });
 
+const assert = require('assert');
+
+assert.ok(process.env.PUBLIC_PATH, `ERROR: CLI arguments: PUBLIC_PATH is required`);
+
 const main = require('./main.js');
 const express = require('express');
 const server = express();
@@ -9,8 +13,7 @@ const path = require('path');
 const fs = require('fs');
 const INDEX_HTML = fs.readFileSync(path.join('./dist', 'index.html'), 'utf-8');
 
-const config = require('../webpack.prod.config.js');
-const { publicPath } = config.output;
+const publicPath = process.env.PUBLIC_PATH;
 
 main(publicPath, server);
 

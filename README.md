@@ -23,12 +23,22 @@ Just the API
 npm run start:api
 ```
 
-# RUNDECK BUILD
-When developers run `yarn version`, the src is built to dist and the repo is tagged. Since dist built cleanly and checked into git when tagged, rundeck only needs to do the following
+# DOCKER BUILD
+Use the following to build and create a container with you app.
 
 ```
-yarn install
-docker build ... 
+yarn run reinstall
+yarn run build
+yarn install --production
+docker build --tag elmspa --build-arg port=8081 .
+
+docker run -d -p 9030:8081  elmspa 
+```
+
+#### INJECT RUNTIME ENV CONFIG
+
+```
+docker run --name=myapp -d -p 9030:8081 -v "/path-to-production-config/configuration-file.env:/usr/src/app/local.env" elmspa 
 ```
 
 
@@ -39,6 +49,7 @@ Place a `local.env` file in the root next to package.json with development setti
 ```bash
 PORT=8081
 DEV_SERVER_LAG=800
+PUBLIC_PATH=/elm-spa
 
 # PUT YOUR SETTINGS HERE
 ```
