@@ -1,0 +1,45 @@
+@import 'material.scss';
+@import 'mixins.scss';
+@import 'nav.scss';
+
+body {
+  background: $white;
+
+  @media #{$medium-and-up} {
+    background-color: color("grey", "lighten-4");
+    background-image: url("https://www.transparenttextures.com/patterns/brushed-alum.png");
+  }
+}
+
+#root {
+  height: 100vh;
+}
+
+#main {
+  height: 100%;
+}
+
+.main_nav {
+  display: none;
+
+  .side_nav_items {
+    @extend .collection;
+    border: none;
+
+    .collection-item {
+      border: none;
+      background: transparent;
+    }
+  }
+}
+
+.main_content {
+  .main_card {
+    @extend .section;
+    padding: 1rem;
+
+    @media #{$medium-and-up} {
+      @include zdepth($level: 2);
+    }
+  }
+}
