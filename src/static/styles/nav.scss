@@ -1,0 +1,47 @@
+$nav-color: color("indigo", "darken-4");
+
+nav {
+  background-color: $nav-color;
+  margin-bottom: 1rem;
+
+  a.avatar {
+    height: 56px;
+
+    @media #{$medium-and-up} {
+      height: 64px;
+    }
+
+    img {
+      width: 40px;
+      height: 40px;
+    }
+  }
+}
+
+.side-nav {
+  &.expanded {
+    transform: translateX(0px);
+    transition: transform 0.2s;
+  }
+
+  .side_nav_header {
+    background: color("indigo", "base");
+    color: $white;
+    min-height: 10rem;
+
+    .title {
+      padding: 2rem 0.5rem 2rem 0.5rem;
+      font-size: 2rem;
+    }
+  }
+
+  .side_nav_items {
+    @extend .collection;
+    border: none;
+
+    .collection-item {
+      border: none;
+      background: transparent;
+    }
+  }
+}
